@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:insert="~{fragments/head}"></th:block>
+<body>
+    <th:block th:insert="~{fragments/header}"></th:block>
+    <main>
+        <div class="container bg-blur mt-5">
+            <h1>Welcome to Andrey's</h1>
+            <hr class="my-3"/>
+            <p class="h4">On our website you will find the best clothes to match your style.</p>
+            <hr class="my-3"/>
+            <h3>
+                <a class="text-primay" th:href="@{/users/login}">Login</a>
+                if you have an account or
+                <a class="text-primay" th:href="@{/users/register}">Register</a>
+                now and check our deals.
+            </h3>
+        </div>
+    </main>
+
+    <th:block th:insert="~{fragments/footer}"></th:block>
+</body>
+</html>

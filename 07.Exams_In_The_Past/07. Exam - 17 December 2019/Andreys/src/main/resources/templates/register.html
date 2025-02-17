@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:insert="~{fragments/head}"></th:block>
+    <body>
+        <th:block th:insert="~{fragments/header}"></th:block>
+        <main>
+            <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+            <hr class="hr-3"/>
+
+            <h3 th:if="${isExists}" class="text-center mt-2">
+                <span class="badge badge-pill badge-dark text-danger">User already exists</span>
+            </h3>
+
+            <form class="mx-auto w-25 bg-blur"
+                  th:method="POST"
+                  th:action="@{/users/register}"
+                  th:object="${userRegisterBindingModel}"
+            >
+                <div class="form-group">
+                    <div class="label-holder textCol d-flex justify-content-center">
+                        <label for="username" class="h4 mb-2 text-white">Username</label>
+                    </div>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="username"
+                            name="username"
+                            th:field="*{username}"
+                            th:errorclass="'bg-danger'"
+                    />
+                    <small th:each="error: ${#fields.errors('username')}" th:text="${error}" class="bg-dark text-danger">Incorrect username!</small>
+                </div>
+                <div class="form-group">
+                    <div class="label-holder text-white textCol d-flex justify-content-center">
+                        <label for="email" class="h4 mb-2">Email</label>
+                    </div>
+                    <input
+                            type="text"
+                            class="form-control"
+                            id="email"
+                            name="email"
+                            th:field="*{email}"
+                            th:errorclass="'bg-danger'"
+                    />
+                    <small th:each="error: ${#fields.errors('email')}" th:text="${error}" class="bg-dark text-danger">Incorrect email!</small>
+                </div>
+                <div class="form-group">
+                    <div class="label-holder text-white textCol d-flex justify-content-center">
+                        <label for="budget" class="h4 mb-2">User budget</label>
+                    </div>
+                    <input
+                            type="number"
+                            class="form-control"
+                            id="budget"
+                            name="budget"
+                            th:field="*{budget}"
+                            th:errorclass="'bg-danger'"
+                    />
+                    <small th:each="error: ${#fields.errors('budget')}" th:text="${error}" class="bg-dark text-danger">Incorrect budget!</small>
+                </div>
+                <div class="form-group">
+                    <div class="label-holder text-white textCol d-flex justify-content-center">
+                        <label for="password" class="h4 mb-2">Password</label>
+                    </div>
+                    <input
+                            type="password"
+                            class="form-control"
+                            id="password"
+                            name="password"
+                            th:field="*{password}"
+                            th:errorclass="'bg-danger'"
+                    />
+                    <small th:each="error: ${#fields.errors('password')}" th:text="${error}" class="bg-dark text-danger">Incorrect password!</small>
+                </div>
+                <div class="form-group">
+                    <div class="label-holder text-white textCol d-flex justify-content-center">
+                        <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+                    </div>
+                    <input
+                            type="password"
+                            class="form-control"
+                            id="confirmPassword"
+                            name="confirmPassword"
+                            th:field="*{confirmPassword}"
+                            th:errorclass="'bg-danger'"
+                    />
+                </div>
+                <div class="button-holder d-flex justify-content-center">
+                    <button type="submit" class="btn btn-secondary text-white mb-3" value="Register">Register</button>
+                </div>
+            </form>
+        </main>
+
+        <th:block th:insert="~{fragments/footer}"></th:block>
+    </body>
+</html>

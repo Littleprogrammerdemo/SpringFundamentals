@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <th:block th:insert="~{fragments/head}"></th:block>
+<body>
+    <th:block th:insert="~{fragments/header}"></th:block>
+    <main >
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Login</span></h1>
+        <hr class="hr-3"/>
+        <form class="mx-auto w-25 bg-blur" th:action="@{/users/login}" th:method="post" th:object="${userLoginBindingModel}">
+            <h4 th:if="${notFound}" class="text-center bg-dark text-danger">Wrong username or password</h4>
+            <h6 th:each="error : ${#fields.errors()}" th:text="${error}" class="text-center bg-dark text-danger">Wrong username</h6>
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="username" class="h3 mb-2">Username</label>
+                </div>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="username"
+                        name="username"
+                        th:field="*{username}"
+                        th:errorclass="'bg-danger'"
+                />
+            </div>
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="password" class="h3 mb-2">Password</label>
+                </div>
+                <input
+                        type="password"
+                        class="form-control"
+                        id="password"
+                        name="password"
+                        th:field="*{password}"
+                        th:errorclass="'bg-danger'"
+                />
+            </div>
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-secondary text-white mb-3">Login</button>
+            </div>
+        </form>
+    </main>
+
+    <th:block th:insert="~{fragments/footer}"></th:block>
+</body>
+</html>
