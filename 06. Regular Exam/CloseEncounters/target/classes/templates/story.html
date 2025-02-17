@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}">
+</head>
+<body>
+<main>
+    <div class="welcome" th:action="@{'/stories/' + ${story.id}}" th:method="PUT" th:object="${createStoryRequest}">
+
+        <h1 th:text="${story.title}"></h1>
+        <hr class="my-3 bg-white w-100"/>
+
+        <p class="h4" style="color: #c9cacb;  text-align: center;">
+            th:text="${story.description}"></p>
+        <hr class="my-3 bg-white w-100"/>
+
+        <div class="read-details">
+            <p>Story by: <span th:text="${story.author}"></span></p>
+            <p>
+                <a class="primary-text" href="">
+                    <button>Back</button>
+                </a>
+            </p>
+            <p>Published on: <span th:text="${#temporals.format(story.publishedDate, 'yyyy-MM-dd')}"></span></p>
+        </div>
+    </div>
+
+</main>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>

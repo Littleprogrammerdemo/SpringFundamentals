@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/commons::head}">
+    <title>Add Story</title>
+</head>
+<body>
+<main>
+    <section class="section full-height">
+
+        <form class="welcome login" th:method="POST" th:action="@{/stories}" th:object="${createStoryRequest}">
+
+            <h3>Add story</h3>
+
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="title" class="h3 mb-2">Title</label>
+                </div>
+                <input type="text" placeholder="Title" id="title" name="title" th:field="*{title}">
+                <small th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="danger" style="font-size: 15px">Error Here</small>
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="description" class="h3 mb-2">Description</label>
+                </div>
+                <textarea type="text" placeholder="Description" id="description" name="description" th:field="*{description}"></textarea>
+                <small th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="danger" style="font-size: 15px">Error Here</small>
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="kind" class="h3 mb-2">Kind</label>
+                </div>
+                <select class="browser-default custom-select" id="kind" name="kind" th:field="*{kind}">
+                    <option th:each="style : ${T(app.story.model.EncounterKind).values()}" th:value="${kind}" th:text="${kind}"></option>
+                </select>
+                <small th:if="${#fields.hasErrors('kind')}" th:errors="*{kind}" class="danger" style="font-size: 15px">Error Here</small>
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder text-white d-flex justify-content-center">
+                    <label for="date" class="h3 mb-2">Date</label>
+                </div>
+                <input type="date" placeholder="Date" id="date" name="date" th:field="*{date}">
+                  <small th:if="${#fields.hasErrors('date')}" th:errors="*{date}" class="danger" style="font-size: 15px">Error Here</small>
+            </div>
+
+            <button type="submit">Add</button>
+
+        </form>
+    </section>
+</main>
+<footer th:replace="~{fragments/commons::footer}"></footer>
+</body>
+</html>
